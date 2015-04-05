@@ -84,17 +84,9 @@
 
 				// model
 				var loader = new THREE.JSONLoader( manager );
-				loader.load( 'json/nightTrain.json', function ( object ) {
+				loader.load( 'json/nightTrain.json' + file, modelLoadedCallback);
 
-					object.traverse( function ( child ) {
-
-						if ( child instanceof THREE.Mesh ) {
-
-							//child.material.map = texture;
-
-						}
-
-					} );
+					//} );
 
 					//object.position.x = - 60;
                     //object.rotation.x = 20* Math.PI / 180;
