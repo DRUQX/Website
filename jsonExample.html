@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<style>
+#body         { position:absolute; width:100%; top:100px; bottom:25px; background:red; }
+</style>
+
+<div id="main">
+
+<script src="build/three.min.js"></script>
+<script src='THREEx.WindowResize.js'></script>
+		<script src="js/loaders/OBJLoader.js"></script>
+		<script src="http://threejs.org/examples/js/Detector.js"></script>
+		<script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+<script>
+var camera, scene, renderer, mesh, loader;
+
+
+init();
+animate();
+
+
+function init() {
+
+    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+    camera.position.z = 1000;
+
+    scene = new THREE.Scene();
+
+    loader = new THREE.JSONLoader();
+
+    loader.load( "json/nightTrain.json", function( geometry ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial() );
+        mesh.scale.set( 500, 500, 500 );
+        //mesh.position.set( center.x, center.y, center.z );
+
+       mesh.position.y = -60;
+        mesh.position.x = -50;
+    	mesh.position.x = 50;
+
+        scene.add( mesh );
+
+    } );
+
+
+    var ambientLight = new THREE.AmbientLight(0x101030);
+    scene.add(ambientLight);
+
+    var directionalLight = new THREE.DirectionalLight(0xffeedd );
+    directionalLight.position.set(0,0, 1).normalize();
+    scene.add(directionalLight);
+
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+
+    document.body.appendChild( renderer.domElement );
+
+}
+
+Math.radians = function(degrees) {
+  return degrees * Math.PI / 180;
+};
+
+function animate() {
+
+    requestAnimationFrame( animate );
+/*
+mesh.rotation.y += (0.2*(Math.PI / 180));
+                mesh.rotation.y %=360;
+*/
+
+mesh.rotation.y +=.01;
+                
+                
+    renderer.render( scene, camera );
+    THREEx.WindowResize(renderer, camera);
+}
+</script>
+
+
+</div>
+</body>
+</html>
