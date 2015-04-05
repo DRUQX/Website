@@ -86,7 +86,7 @@
 				var loader = new THREE.JSONLoader( manager );
 				loader.load( 'json/nightTrain.json' + file, modelLoadedCallback);
 
-					//} );
+					} );
 
 					//object.position.x = - 60;
                     //object.rotation.x = 20* Math.PI / 180;
@@ -97,7 +97,7 @@
                     obj = object
 					scene.add( obj );
 
-				//} );
+				} );
 
 				renderer = new THREE.WebGLRenderer();
 				renderer.setSize( window.innerWidth, window.innerHeight );
