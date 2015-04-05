@@ -144,7 +144,7 @@
 				camera.position.x += ( mouseX - camera.position.x ) * .05;
 				camera.position.y += ( - mouseY - camera.position.y ) * .05;
 */
-  obj.rotation.y += (0.2*(Math.PI / 180));
+  obj.rotation.y += -Math.PI/5;
                 obj.rotation.y %=360;
     
 				camera.lookAt( scene.position );
