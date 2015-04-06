@@ -2,7 +2,6 @@
 <html lang="en">
 <body>
 <style>
-#body         { position:absolute;  background:red; }
 </style>
 
 <div id="body">
@@ -32,26 +31,16 @@ function init() {
     loader = new THREE.JSONLoader();
 
     loader.load( "json/miko.json", function( geometry ) {
-        mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial() );
-                mesh.scale.set( 300, 300, 300 );
- box = new THREE.Box3().setFromObject( mesh );
-box.center( mesh.position ); // this re-sets the mesh position
-mesh.position.multiplyScalar( - 1 );
-pivot = new THREE.Group();
-scene.add( pivot );
-pivot.add( mesh );
+    mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial() );
+    mesh.position.set(1, -12, 0);
+    mesh.scale.set( 300, 300, 300 );
+ 	box = new THREE.Box3().setFromObject( mesh );
+	box.center( mesh.position ); // this re-sets the mesh position
+	mesh.position.multiplyScalar( - 1 );
+	pivot = new THREE.Group();
+	scene.add( pivot );
+	pivot.add( mesh );
 
-      
-        
-/*
-       mesh.position.y = -30;
-       //mesh.position.x = 200;
-       //mesh.position.x = -200;
-    	mesh.position.z= -50;
-    	mesh.position.z= 50;
-
-*/
-        //scene.add( mesh );
 
     } );
 
@@ -65,7 +54,7 @@ pivot.add( mesh );
 
 //background color
     renderer = new THREE.WebGLRenderer({ alpha: true } );
-renderer.setClearColor( 0x131313, 1 ); //background color
+renderer.setClearColor( 0xFACC2E, 1 ); //background color
 
 
     renderer.setSize( window.innerWidth, window.innerHeight );
@@ -79,7 +68,7 @@ function animate() {
 
     requestAnimationFrame( animate );
 
-pivot.rotation.y += 0.05;
+pivot.rotation.y += 0.01;
 
                 
                 
