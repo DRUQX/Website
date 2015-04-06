@@ -13,7 +13,7 @@
 		<script src="http://threejs.org/examples/js/Detector.js"></script>
 		<script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
 <script>
-var camera, scene, renderer, mesh, loader, rad;
+var camera, scene, renderer, mesh, loader, pivot, box;
 
 
 init();
@@ -33,17 +33,24 @@ function init() {
 
     loader.load( "json/miko.json", function( geometry ) {
         mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial() );
-        mesh.scale.set( 300, 300, 300 );
+                mesh.scale.set( 300, 300, 300 );
+ box = new THREE.Box3().setFromObject( mesh );
+box.center( mesh.position ); // this re-sets the mesh position
+mesh.position.multiplyScalar( - 1 );
+pivot = new THREE.Group();
+scene.add( pivot );
+pivot.add( mesh );
+
       
         
-
+/*
        mesh.position.y = -30;
        //mesh.position.x = 200;
        //mesh.position.x = -200;
     	mesh.position.z= -50;
     	mesh.position.z= 50;
 
-
+*/
         scene.add( mesh );
 
     } );
@@ -73,10 +80,12 @@ function animate() {
     requestAnimationFrame( animate );
 
 
-
+/*
 mesh.rotation.y += 0.05;
 mesh.rotation.y %=360;
+*/
 
+pivot.rotation.y += 0.05;
 
                 
                 
