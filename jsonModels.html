@@ -3,7 +3,7 @@
 <body>
 <style>
 </style>
-
+<h1> coming soon</h1>
 <div id="body">
 
 <script src="build/three.min.js"></script>
@@ -12,7 +12,8 @@
 		<script src="http://threejs.org/examples/js/Detector.js"></script>
 		<script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
 <script>
-var camera, scene, renderer, mesh, loader, pivot, box;
+var camera, scene, renderer, mesh, loader, pivot, box, material;
+var group;
 
 
 init();
@@ -28,21 +29,41 @@ function init() {
 
     scene = new THREE.Scene();
 
+
+  var texture = THREE.ImageUtils.loadTexture( 'images/DRUQX.JPG', {}, function(){ 
+    // use to test when image gets loaded if it does
+   // alert('texture loaded') 
+    }, 
+    function(){ 
+        alert('error') 
+    });
+     material = new THREE.MeshBasicMaterial( { map: texture } );
+ 	 //group = new THREE.Object3D();
+    
     loader = new THREE.JSONLoader();
 
-    loader.load( "json/miko.json", function( geometry ) {
+    loader.load( "json/miko.json", function( geometry, material ) {
     mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial() );
     mesh.position.set(1, -12, 0);
-    mesh.scale.set( 300, 300, 300 );
+    mesh.scale.set( 800, 800, 800 );
  	box = new THREE.Box3().setFromObject( mesh );
 	box.center( mesh.position ); // this re-sets the mesh position
 	mesh.position.multiplyScalar( - 1 );
-	pivot = new THREE.Group();
-	scene.add( pivot );
-	pivot.add( mesh );
+	//pivot = new THREE.Group();
+	pivot = new THREE.Object3D();
+
+	//group.add(mesh);
+    //scene.add( group );
+
+
+
+pivot.add( mesh );
+scene.add( pivot );
+
 
 
     } );
+
 
 
     var ambientLight = new THREE.AmbientLight(0x101030);
@@ -51,6 +72,8 @@ function init() {
     var directionalLight = new THREE.DirectionalLight(0xffeedd );
     directionalLight.position.set(0,0, 1).normalize();
     scene.add(directionalLight);
+
+
 
 //background color
     renderer = new THREE.WebGLRenderer({ alpha: true } );
