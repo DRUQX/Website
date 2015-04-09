@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
+
 <style>
-@font-face { font-family: Impact; src: url('fonts/Impact.ttf'); } 
+@font-face { font-family: Impact; src: url('fonts/Impact.ttf'); font-weight: normal; } 
 h1 {   font-family: Impact   }
 </style>
 
@@ -52,8 +53,8 @@ function init() {
 
     loader.load( "json/me.json", function( geometry ) {
     mesh = new THREE.Mesh( geometry, material );
-    mesh.position.set(1, 70, 0);
-    mesh.scale.set(1500, 1500, 1500 );
+    mesh.position.set(1, 10, 0);
+    mesh.scale.set(1900, 1900, 1900 );
  	box = new THREE.Box3().setFromObject( mesh );
 	box.center( mesh.position ); // this re-sets the mesh position
 	mesh.position.multiplyScalar( - 1 );
