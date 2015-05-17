@@ -39,10 +39,10 @@ function init() {
     scene = new THREE.Scene();
 
 
-  var texture = THREE.ImageUtils.loadTexture( 'images/druqx2.JPG', {}, function(){ 
+  var texture = THREE.ImageUtils.loadTexture( 'images/DRUQX.JPG', {}, function(){ 
     // use to test when image gets loaded if it does
    // alert('texture loaded') 
-   texture.offset.x = -0.2;
+   texture.offset.x = 0.4;
    texture.offset.y = 0.2;
     }, 
     function(){ 
@@ -52,12 +52,14 @@ function init() {
     
     
     
+    
     loader = new THREE.JSONLoader();
 
-    loader.load( "json/me.json", function( geometry ) {
+  //  loader.load( "json/untitled.json", function( geometry ) {
+    loader.load( "json/meScream.json", function( geometry ) {
     mesh = new THREE.Mesh( geometry, material );
-    mesh.position.set(1, 10, 0);
-    mesh.scale.set(1900, 1900, 1900 );
+    mesh.position.set(3, 20, 0);
+    mesh.scale.set(1600, 1600, 1600 );
  	box = new THREE.Box3().setFromObject( mesh );
 	box.center( mesh.position ); // this re-sets the mesh position
 	mesh.position.multiplyScalar( - 1 );
