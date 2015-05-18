@@ -58,8 +58,8 @@ function init() {
   //  loader.load( "json/untitled.json", function( geometry ) {
     loader.load( "json/meScream.json", function( geometry ) {
     mesh = new THREE.Mesh( geometry, material );
-    mesh.position.set(3, 2, 0);
-    mesh.scale.set(200, 200, 200 );
+    mesh.position.set(3, 1, 0);
+    mesh.scale.set(170, 170, 170 );
  	box = new THREE.Box3().setFromObject( mesh );
 	box.center( mesh.position ); // this re-sets the mesh position
 	mesh.position.multiplyScalar( - 1 );
@@ -83,7 +83,7 @@ scene.add( pivot );
     var ambientLight = new THREE.AmbientLight(0x101030);
    scene.add(ambientLight);
 
-    var directionalLight = new THREE.DirectionalLight(0xffeedd );
+    var directionalLight = new THREE.DirectionalLight(0xFACC2E );
     directionalLight.position.set(0,0, 1).normalize();
     scene.add(directionalLight);
 
@@ -105,7 +105,7 @@ function animate() {
 
     requestAnimationFrame( animate );
 
-pivot.rotation.y += 0.02;
+pivot.rotation.y += 0.04;
 
                 
                 
